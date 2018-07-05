@@ -1,0 +1,36 @@
+---
+output:
+  md_document:
+    variant: gfm
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# weforum
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
+Interface to the [World Economic Forum's](https://www.weforum.org/) website [API](https://api.weforum.org/).
+
+## Functions
+
+* `wef_list`
+* `wef_articles`
+
+## Examples
+
+```{r}
+library(weforum)
+
+(list <- wef_list())
+
+articles <- wef_articles()
+```
