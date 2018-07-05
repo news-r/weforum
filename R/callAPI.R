@@ -1,11 +1,23 @@
-.c <- function(x){
-  theme <- rstudioapi::getThemeInfo()
+#' Call API
+#'
+#' Call API endpoint.
+#'
+#' @inheritParams wef_articles_list
+#' @param url URL to call.
+#'
+#' @examples
+#' acc <- wef_sf_accounts()
+#'
+#' rand_acc <- sample(acc[[1]]$attributes$api_endpoint, 1)
+#'
+#' data <- wef_call(rand_acc)
+#'
+#' @return A \code{list}.
+#'
+#' @export
+wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
 
-  if (isTRUE(theme$dark)) crayon::white(x) else crayon::black(x)
-}
-
-.call_api <- function(endpoint, pages, n, quiet){
-  uri <- paste0(getOption("weforum.base_url"), "/v1/", endpoint, "?page%5Bnumber%5D=1&page%5Bsize%5D=", n)
+  uri <- paste0(url, "?page%5Bnumber%5D=1&page%5Bsize%5D=", n)
 
   data <- jsonlite::fromJSON(uri)
 
@@ -25,7 +37,7 @@
   if(pages > 1){
 
     for(p in 2:pages){
-      uri <- paste0(getOption("weforum.base_url"), "/v1/", endpoint, "?&page%5Bsize%5D=", n, "&page%5Bnumber%5D=", p)
+      uri <- paste0(url, "?&page%5Bsize%5D=", n, "&page%5Bnumber%5D=", p)
 
       if(!isTRUE(quiet)){
         if(length(data$meta$pagination) > 0){
@@ -43,11 +55,4 @@
 
   }
   results
-}
-
-.get_valid <- function(p){
-  uri <- paste0(getOption("weforum.base_url"), "/v1/", p)
-  data <- jsonlite::fromJSON(uri)
-
-  gsub(".*/", "", data$api_endpoint) %>% sort()
 }

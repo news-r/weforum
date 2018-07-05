@@ -1,18 +1,18 @@
-#' List API calls
+#' Endpoints
 #'
 #' List all API calls available.
 #'
 #' @examples
-#' wef_list()
+#' wef_endpoints()
 #'
 #' @return A \link[tibble]{tibble}
 #'
 #' @export
-wef_list <- function(){
+wef_endpoints <- function(){
   resp <- jsonlite::fromJSON(getOption("weforum.base_url"))$v1
-  l <- purrr::map_chr(resp, "list")
+  l <- unlist(resp)
   tibble::tibble(
-    name = names(l),
-    endpoints = l %>% unname()
+    name = gsub("\\.", "_", names(l)),
+    endpoints = unname(l)
   )
 }

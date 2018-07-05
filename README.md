@@ -2,37 +2,44 @@
 
 # weforum
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+
+![weforum
+logo](https://www.weforum.org/assets/logo-d8b23e233f85a1af9093a1946e18cff462b0ca82fcd720e2a9633270e53a0bcd.svg)
 
 Interface to the [World Economic Forum’s](https://www.weforum.org/)
 website [API](https://api.weforum.org/).
 
-## Functions
+## Install
 
-  - `wef_list`
-  - `wef_articles`
+``` r
+devtools::install_git("https://git.weforum.local/JCOE/weforum.git")
+```
 
 ## Examples
 
 ``` r
 library(weforum)
 
-(list <- wef_list())
-#> # A tibble: 12 x 2
-#>    name           endpoints                                
-#>    <chr>          <chr>                                    
-#>  1 articles       https://api.weforum.org/v1/articles      
-#>  2 collections    https://api.weforum.org/v1/collections   
-#>  3 communities    https://api.weforum.org/v1/communities   
-#>  4 events         https://api.weforum.org/v1/events        
-#>  5 event_sessions https://api.weforum.org/v1/event_sessions
-#>  6 pages          https://api.weforum.org/v1/pages         
-#>  7 projects       https://api.weforum.org/v1/projects      
-#>  8 reports        https://api.weforum.org/v1/reports       
-#>  9 sf_accounts    https://api.weforum.org/v1/sf_accounts   
-#> 10 topics         https://api.weforum.org/v1/topics        
-#> 11 streams        https://api.weforum.org/v1/streams       
-#> 12 updates        https://api.weforum.org/v1/updates
+wef_endpoints() # list endpoints
+#> # A tibble: 15 x 2
+#>    name                   endpoints                                       
+#>    <chr>                  <chr>                                           
+#>  1 articles_list          https://api.weforum.org/v1/articles             
+#>  2 articles_channels      https://api.weforum.org/v1/articles/channels    
+#>  3 articles_content_types https://api.weforum.org/v1/articles/content-typ~
+#>  4 articles_origins       https://api.weforum.org/v1/articles/origins     
+#>  5 collections_list       https://api.weforum.org/v1/collections          
+#>  6 communities_list       https://api.weforum.org/v1/communities          
+#>  7 events_list            https://api.weforum.org/v1/events               
+#>  8 event_sessions_list    https://api.weforum.org/v1/event_sessions       
+#>  9 pages_list             https://api.weforum.org/v1/pages                
+#> 10 projects_list          https://api.weforum.org/v1/projects             
+#> 11 reports_list           https://api.weforum.org/v1/reports              
+#> 12 sf_accounts_list       https://api.weforum.org/v1/sf_accounts          
+#> 13 topics_list            https://api.weforum.org/v1/topics               
+#> 14 streams_list           https://api.weforum.org/v1/streams              
+#> 15 updates_list           https://api.weforum.org/v1/updates
 
-articles <- wef_articles()
+articles <- wef_articles_list() # get articles
 ```

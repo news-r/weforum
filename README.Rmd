@@ -16,21 +16,24 @@ knitr::opts_chunk$set(
 
 # weforum
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+
+![weforum logo](https://www.weforum.org/assets/logo-d8b23e233f85a1af9093a1946e18cff462b0ca82fcd720e2a9633270e53a0bcd.svg)
 
 Interface to the [World Economic Forum's](https://www.weforum.org/) website [API](https://api.weforum.org/).
 
-## Functions
+## Install
 
-* `wef_list`
-* `wef_articles`
+```{r, eval = FALSE}
+devtools::install_git("https://git.weforum.local/JCOE/weforum.git")
+```
 
 ## Examples
 
 ```{r}
 library(weforum)
 
-(list <- wef_list())
+wef_endpoints() # list endpoints
 
-articles <- wef_articles()
+articles <- wef_articles_list() # get articles
 ```
