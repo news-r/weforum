@@ -85,7 +85,7 @@ Larger pages (\code{n}) take longer to download and are not necessarily more eff
   \item{\code{wef_pages} Get website pages}
   \item{\code{wef_projects} Get projects}
   \item{\code{wef_reports} Get reports}
-  \item{\code{wef_sf_accounts} Get authors}
+  \item{\code{wef_sf_accounts} Get Salesforce accounts}
   \item{\code{wef_topics} Get topics}
   \item{\code{wef_streams} Get streams}
   \item{\code{wef_updates} Get updates}
