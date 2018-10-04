@@ -15,6 +15,24 @@ articles.
 devtools::install_git("https://git.weforum.local/JCOE/weforum.git")
 ```
 
+## Functions
+
+  - `wef_articles_list`
+  - `wef_articles_channels`
+  - `wef_articles_content_types`
+  - `wef_articles_origins`
+  - `wef_collections`
+  - `wef_communities`
+  - `wef_events`
+  - `wef_event_sessions`
+  - `wef_projects`
+  - `wef_reports`
+  - `wef_sf_accounts`
+  - `wef_topics`
+  - `wef_streams`
+  - `wef_updates`
+  - `wef_endpoints`
+
 ## Basic Example
 
 ``` r
@@ -50,9 +68,13 @@ Let’s demonstrate with an example.
 ``` r
 # get some articles
 articles <- wef_articles_list() 
+
+nrow(articles[[1]])
+#> [1] 25
 ```
 
-This returns a nested list. As explained above it includes more
+This returns a nested list, of 25 articles by default. As explained
+above it includes more
 endpoints.
 
 ``` r
@@ -64,4 +86,7 @@ You can call those endpoints with `wef_call`.
 
 ``` r
 data <- purrr::map(articles[[1]]$attributes$api_endpoint, wef_call)
+
+length(data)
+#> [1] 25
 ```
