@@ -19,9 +19,12 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
 
   uri <- paste0(url, "?page%5Bnumber%5D=1&page%5Bsize%5D=", n)
 
-  data <- jsonlite::fromJSON(uri)
+  data <- tryCatch(
+    jsonlite::fromJSON(uri),
+    error = function(e) e
+  )
 
-  if(!isTRUE(quiet)){
+  if(!isTRUE(quiet) && !inherits(data, "error")){
 
     if(length(data$meta$pagination) > 0){
       message(
@@ -30,7 +33,12 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
       )
     }
 
+  } else if(!isTRUE(quiet)){
+    message(.c(crayon::red(cli::symbol$cross)), .c(crayon::red(" error")), " on: ", .c(crayon::white(url)))
   }
+
+  if(inherits(data, "error"))
+    data <- list()
 
   results <- list(data$data)
 
@@ -47,9 +55,15 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
         }
       }
 
-      data <- jsonlite::fromJSON(uri)
+      data <- tryCatch(
+        jsonlite::fromJSON(uri),
+        error = function(e) e
+      )
 
-      results <- append(results, list(data$data))
+      if(!inherits(data, "error"))
+        results <- append(results, list(data$data))
+      else if(!isTRUE(quiet))
+        message(.c(crayon::red(cli::symbol$cross)), .c(crayon::red(" error")), " on: ", .c(crayon::white(url)))
 
     }
 

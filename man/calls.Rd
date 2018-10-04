@@ -20,12 +20,14 @@
 \usage{
 wef_articles_list(pages = 1, n = 25, quiet = !interactive())
 
-wef_articles_channels(channel, pages = 1, n = 25, quiet = !interactive())
+wef_articles_channels(channel, pages = 1, n = 25,
+  quiet = !interactive())
 
 wef_articles_content_types(type, pages = 1, n = 25,
   quiet = !interactive())
 
-wef_articles_origins(origin, pages = 1, n = 25, quiet = !interactive())
+wef_articles_origins(origin, pages = 1, n = 25,
+  quiet = !interactive())
 
 wef_collections(pages = 1, n = 25, quiet = !interactive())
 

@@ -4,8 +4,6 @@ output:
     variant: gfm
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -20,7 +18,7 @@ knitr::opts_chunk$set(
 
 ![weforum logo](https://www.weforum.org/assets/logo-d8b23e233f85a1af9093a1946e18cff462b0ca82fcd720e2a9633270e53a0bcd.svg)
 
-Interface to the [World Economic Forum's](https://www.weforum.org/) website [API](https://api.weforum.org/).
+Interface to the [World Economic Forum's](https://www.weforum.org/) website [API](https://api.weforum.org/), containing over 37,000 articles.
 
 ## Install
 
@@ -28,12 +26,31 @@ Interface to the [World Economic Forum's](https://www.weforum.org/) website [API
 devtools::install_git("https://git.weforum.local/JCOE/weforum.git")
 ```
 
-## Examples
+## Basic Example
 
 ```{r}
 library(weforum)
 
-wef_endpoints() # list endpoints
+# list endpoints
+endpoints <- wef_endpoints() 
+knitr::kable(endpoints)
+```
 
-articles <- wef_articles_list() # get articles
+The above returns basic endpoints, responses from the calls above will include other endpoints, `weforum` lets you dynamically call those. Let's demonstrate with an example.
+
+```{r}
+# get some articles
+articles <- wef_articles_list() 
+```
+
+This returns a nested list. As explained above it includes more endpoints.
+
+```{r}
+names(articles[[1]]$attributes)[grepl("endpoint", names(articles[[1]]$attributes))]
+```
+
+You can call those endpoints with `wef_call`.
+
+```{r}
+data <- purrr::map(articles[[1]]$attributes$api_endpoint, wef_call)
 ```

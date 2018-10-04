@@ -16,4 +16,5 @@ Imports:
     crayon,
     cli,
     rstudioapi
-RoxygenNote: 6.0.1
+Suggests: purrr
+RoxygenNote: 6.1.0
