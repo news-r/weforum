@@ -1,3 +1,5 @@
+globalVariables("progress_bar")
+
 .c <- function(x){
   theme <- rstudioapi::getThemeInfo()
 
