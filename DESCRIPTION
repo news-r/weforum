@@ -15,6 +15,7 @@ Imports:
     magrittr,
     crayon,
     cli,
-    rstudioapi
-Suggests: purrr
+    rstudioapi,
+    progress
 RoxygenNote: 6.1.0
+Remotes: r-lib/progress

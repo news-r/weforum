@@ -4,8 +4,21 @@
   if (isTRUE(theme$dark)) crayon::white(x) else crayon::black(x)
 }
 
-.call_api <- function(endpoint, pages, n, quiet){
+.call_api <- function(endpoint, pages, n, quiet, sleep = .5){
+
+  if(sleep < .5){
+    cat(crayon::red(cli::symbol$warning), "sleep argument", crayon::yellow("too low"), "- setting to", crayon::green(".5"))
+    sleep <- .5
+  }
+
   uri <- paste0(getOption("weforum.base_url"), "/v1/", endpoint, "?page%5Bnumber%5D=1&page%5Bsize%5D=", n)
+
+  if(!isTRUE(quiet)){
+    pb <- progress_bar$new(
+      format = "  downloading [:bar] :percent eta: :eta",
+      total = pages - 1, clear = FALSE, width= 60)
+    pb$tick(0)
+  }
 
   data <- jsonlite::fromJSON(uri)
 
@@ -29,11 +42,11 @@
 
       if(!isTRUE(quiet)){
         if(length(data$meta$pagination) > 0){
-          message(
-            .c(cli::symbol$dot), " ", crayon::blue("Getting page"), .c(": "), crayon::green(p)
-          )
+          pb$tick()
         }
       }
+
+      Sys.sleep(sleep)
 
       data <- jsonlite::fromJSON(uri)
 

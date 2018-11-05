@@ -23,7 +23,8 @@ Interface to the [World Economic Forum's](https://www.weforum.org/) website [API
 ## Install
 
 ```{r, eval = FALSE}
-devtools::install_git("https://git.weforum.local/JCOE/weforum.git")
+# install.packages("remotes")
+remotes::install_git("https://git.weforum.local/JCOE/weforum.git", credentials = YOUR_CREDENTIALS)
 ```
 
 ## Functions

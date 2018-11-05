@@ -18,38 +18,43 @@
 \alias{wef_updates}
 \title{Calls}
 \usage{
-wef_articles_list(pages = 1, n = 25, quiet = !interactive())
+wef_articles_list(pages = 1, n = 25, quiet = !interactive(),
+  sleep = 1)
 
 wef_articles_channels(channel, pages = 1, n = 25,
-  quiet = !interactive())
+  quiet = !interactive(), sleep = 1)
 
 wef_articles_content_types(type, pages = 1, n = 25,
-  quiet = !interactive())
+  quiet = !interactive(), sleep = 1)
 
 wef_articles_origins(origin, pages = 1, n = 25,
-  quiet = !interactive())
+  quiet = !interactive(), sleep = 1)
 
-wef_collections(pages = 1, n = 25, quiet = !interactive())
+wef_collections(pages = 1, n = 25, quiet = !interactive(),
+  sleep = 1)
 
-wef_communities(pages = 1, n = 25, quiet = !interactive())
+wef_communities(pages = 1, n = 25, quiet = !interactive(),
+  sleep = 1)
 
-wef_events(pages = 1, n = 25, quiet = !interactive())
+wef_events(pages = 1, n = 25, quiet = !interactive(), sleep = 1)
 
-wef_event_sessions(pages = 1, n = 25, quiet = !interactive())
+wef_event_sessions(pages = 1, n = 25, quiet = !interactive(),
+  sleep = 1)
 
-wef_pages(pages = 1, n = 25, quiet = !interactive())
+wef_pages(pages = 1, n = 25, quiet = !interactive(), sleep = 1)
 
-wef_projects(pages = 1, n = 25, quiet = !interactive())
+wef_projects(pages = 1, n = 25, quiet = !interactive(), sleep = 1)
 
-wef_reports(pages = 1, n = 25, quiet = !interactive())
+wef_reports(pages = 1, n = 25, quiet = !interactive(), sleep = 1)
 
-wef_sf_accounts(pages = 1, n = 25, quiet = !interactive())
+wef_sf_accounts(pages = 1, n = 25, quiet = !interactive(),
+  sleep = 1)
 
-wef_topics(pages = 1, n = 25, quiet = !interactive())
+wef_topics(pages = 1, n = 25, quiet = !interactive(), sleep = 1)
 
-wef_streams(pages = 1, n = 25, quiet = !interactive())
+wef_streams(pages = 1, n = 25, quiet = !interactive(), sleep = 1)
 
-wef_updates(pages = 1, n = 25, quiet = !interactive())
+wef_updates(pages = 1, n = 25, quiet = !interactive(), sleep = 1)
 }
 \arguments{
 \item{pages}{Number of pages to retrieve.}
@@ -57,6 +62,8 @@ wef_updates(pages = 1, n = 25, quiet = !interactive())
 \item{n}{Number of results per page.}
 
 \item{quiet}{If \code{FALSE} prints useful information to the console.}
+
+\item{sleep}{Pause in seconds to mark between each API call (\code{pages}).}
 
 \item{channel}{Channel to retrieve, see \code{\link{valid_channels}}}
 

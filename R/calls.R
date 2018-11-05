@@ -5,6 +5,7 @@
 #' @param n Number of results per page.
 #' @param pages Number of pages to retrieve.
 #' @param quiet If \code{FALSE} prints useful information to the console.
+#' @param sleep Pause in seconds to mark between each API call (\code{pages}).
 #' @param channel Channel to retrieve, see \code{\link{valid_channels}}
 #' @param type Content type to retrieve, see \code{\link{valid_types}}
 #' @param origin Origin to retrieve, see \code{\link{valid_origins}}
@@ -37,15 +38,15 @@
 #'
 #' @rdname calls
 #' @export
-wef_articles_list <- function(pages = 1, n = 25, quiet = !interactive()){
+wef_articles_list <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
-  .call_api("articles", pages, n, quiet)
+  .call_api("articles", pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_articles_channels <- function(channel, pages = 1, n = 25, quiet = !interactive()){
+wef_articles_channels <- function(channel, pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
   if(missing(channel))
     stop(crayon::red("must pass channel"), call. = FALSE)
@@ -53,13 +54,13 @@ wef_articles_channels <- function(channel, pages = 1, n = 25, quiet = !interacti
   if(!channel %in% valid_channels())
     stop(crayon::red("invalid channel, valid_channels"), call. = FALSE)
 
-  .call_api(paste0("articles/channels", channel), pages, n, quiet)
+  .call_api(paste0("articles/channels", channel), pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_articles_content_types <- function(type, pages = 1, n = 25, quiet = !interactive()){
+wef_articles_content_types <- function(type, pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
   if(missing(type))
     stop(crayon::red("must pass type"), call. = FALSE)
@@ -67,13 +68,13 @@ wef_articles_content_types <- function(type, pages = 1, n = 25, quiet = !interac
   if(!type %in% valid_types())
     stop(crayon::red("invalid type, see valid_types"), call. = FALSE)
 
-  .call_api(paste0("articles/content-types", type), pages, n, quiet)
+  .call_api(paste0("articles/content-types", type), pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_articles_origins <- function(origin, pages = 1, n = 25, quiet = !interactive()){
+wef_articles_origins <- function(origin, pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
   if(missing(origin))
     stop(crayon::red("must pass origin"), call. = FALSE)
@@ -81,94 +82,94 @@ wef_articles_origins <- function(origin, pages = 1, n = 25, quiet = !interactive
   if(!origin %in% valid_origins())
     stop(crayon::red("invalid origin, see valid_origins"), call. = FALSE)
 
-  .call_api(paste0("articles/origins", origin), pages, n, quiet)
+  .call_api(paste0("articles/origins", origin), pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_collections <- function(pages = 1, n = 25, quiet = !interactive()){
+wef_collections <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
-  .call_api("collections", pages, n, quiet)
-
-}
-
-#' @rdname calls
-#' @export
-wef_communities <- function(pages = 1, n = 25, quiet = !interactive()){
-
-  .call_api("communities", pages, n, quiet)
+  .call_api("collections", pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_events <- function(pages = 1, n = 25, quiet = !interactive()){
+wef_communities <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
-  .call_api("events", pages, n, quiet)
-
-}
-
-#' @rdname calls
-#' @export
-wef_event_sessions <- function(pages = 1, n = 25, quiet = !interactive()){
-
-  .call_api("event_sessions", pages, n, quiet)
+  .call_api("communities", pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_pages <- function(pages = 1, n = 25, quiet = !interactive()){
+wef_events <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
-  .call_api("pages", pages, n, quiet)
-
-}
-
-#' @rdname calls
-#' @export
-wef_projects <- function(pages = 1, n = 25, quiet = !interactive()){
-
-  .call_api("projects", pages, n, quiet)
+  .call_api("events", pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_reports <- function(pages = 1, n = 25, quiet = !interactive()){
+wef_event_sessions <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
-  .call_api("reports", pages, n, quiet)
-
-}
-
-#' @rdname calls
-#' @export
-wef_sf_accounts <- function(pages = 1, n = 25, quiet = !interactive()){
-
-  .call_api("sf_accounts", pages, n, quiet)
+  .call_api("event_sessions", pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_topics <- function(pages = 1, n = 25, quiet = !interactive()){
+wef_pages <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
-  .call_api("topics", pages, n, quiet)
-
-}
-
-#' @rdname calls
-#' @export
-wef_streams <- function(pages = 1, n = 25, quiet = !interactive()){
-
-  .call_api("streams", pages, n, quiet)
+  .call_api("pages", pages, n, quiet, sleep)
 
 }
 
 #' @rdname calls
 #' @export
-wef_updates <- function(pages = 1, n = 25, quiet = !interactive()){
+wef_projects <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
 
-  .call_api("updates", pages, n, quiet)
+  .call_api("projects", pages, n, quiet, sleep)
+
+}
+
+#' @rdname calls
+#' @export
+wef_reports <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
+
+  .call_api("reports", pages, n, quiet, sleep)
+
+}
+
+#' @rdname calls
+#' @export
+wef_sf_accounts <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
+
+  .call_api("sf_accounts", pages, n, quiet, sleep)
+
+}
+
+#' @rdname calls
+#' @export
+wef_topics <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
+
+  .call_api("topics", pages, n, quiet, sleep)
+
+}
+
+#' @rdname calls
+#' @export
+wef_streams <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
+
+  .call_api("streams", pages, n, quiet, sleep)
+
+}
+
+#' @rdname calls
+#' @export
+wef_updates <- function(pages = 1, n = 25, quiet = !interactive(), sleep = 1){
+
+  .call_api("updates", pages, n, quiet, sleep)
 
 }
