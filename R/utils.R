@@ -9,7 +9,7 @@ globalVariables("progress_bar")
 .call_api <- function(endpoint, pages, n, quiet, sleep = .5){
 
   if(sleep < .5){
-    cat(crayon::red(cli::symbol$warning), "sleep argument", crayon::yellow("too low"), "- setting to", crayon::green(".5"))
+    cat(crayon::red(cli::symbol$warning), "sleep argument", crayon::yellow("too low"), "- setting to", crayon::green(".5"), "\n")
     sleep <- .5
   }
 
@@ -17,9 +17,9 @@ globalVariables("progress_bar")
 
   if(!isTRUE(quiet)){
     pb <- progress::progress_bar$new(
-      format = "  downloading [:bar] :percent eta: :eta",
-      total = pages - 1, clear = FALSE, width= 60)
-    pb$tick(0)
+      format = ":rate downloading page: :current [:bar] :percent eta: :eta",
+      total = pages, clear = FALSE, width= 60)
+    pb$tick(1)
   }
 
   data <- jsonlite::fromJSON(uri)
@@ -28,8 +28,8 @@ globalVariables("progress_bar")
 
     if(length(data$meta$pagination) > 0){
       message(
-        .c(cli::symbol$dot), " ", crayon::blue("Pages"), .c(": "), crayon::green(data$meta$pagination$total_pages), "\n",
-        .c(cli::symbol$dot), " ", crayon::blue("Articles"), .c(": "), crayon::green(data$meta$pagination$total_count)
+        .c(cli::symbol$dot), " ", crayon::blue("All Pages"), .c(": "), crayon::green(data$meta$pagination$total_pages), "\n",
+        .c(cli::symbol$dot), " ", crayon::blue("All Objects"), .c(": "), crayon::green(data$meta$pagination$total_count)
       )
     }
 
