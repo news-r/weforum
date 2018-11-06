@@ -1,6 +1,6 @@
-# weforum
-
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+
+# weforum
 
 ![weforum
 logo](https://www.weforum.org/assets/logo-d8b23e233f85a1af9093a1946e18cff462b0ca82fcd720e2a9633270e53a0bcd.svg)
@@ -12,7 +12,8 @@ articles.
 ## Install
 
 ``` r
-devtools::install_git("https://git.weforum.local/JCOE/weforum.git")
+# install.packages("remotes")
+remotes::install_bitbucket("JohnCoene/weforum")
 ```
 
 ## Functions
