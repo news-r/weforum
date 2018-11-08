@@ -15,13 +15,6 @@ globalVariables("progress_bar")
 
   uri <- paste0(getOption("weforum.base_url"), "/v1/", endpoint, "?page%5Bnumber%5D=1&page%5Bsize%5D=", n)
 
-  if(!isTRUE(quiet)){
-    pb <- progress::progress_bar$new(
-      format = ":rate downloading page: :current [:bar] :percent eta: :eta",
-      total = pages, clear = FALSE, width= 60)
-    pb$tick(1)
-  }
-
   data <- jsonlite::fromJSON(uri)
 
   if(!isTRUE(quiet)){
@@ -45,6 +38,13 @@ globalVariables("progress_bar")
         crayon::red(data$meta$pagination$total_pages), "), setting page to ", crayon::green(pages), "\n"
       )
       pages <- data$meta$pagination$total_pages
+    }
+
+    if(!isTRUE(quiet)){
+      pb <- progress::progress_bar$new(
+        format = ":rate downloading page: :current [:bar] :percent eta: :eta",
+        total = pages, clear = FALSE, width= 60)
+      pb$tick(1)
     }
 
     for(p in 2:pages){
