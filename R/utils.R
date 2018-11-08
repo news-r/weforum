@@ -39,6 +39,14 @@ globalVariables("progress_bar")
 
   if(pages > 1){
 
+    if(pages > data$meta$pagination$total_pages){
+      message(
+        crayon::red(cli::symbol$cross), " Requesting more pages than there are (",
+        crayon::red(data$meta$pagination$total_pages), "), setting page to ", crayon::green(pages), "\n"
+      )
+      pages <- data$meta$pagination$total_pages
+    }
+
     for(p in 2:pages){
       uri <- paste0(getOption("weforum.base_url"), "/v1/", endpoint, "?&page%5Bsize%5D=", n, "&page%5Bnumber%5D=", p)
 
