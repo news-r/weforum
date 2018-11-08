@@ -4,7 +4,8 @@
 \alias{wef_call}
 \title{Call API}
 \usage{
-wef_call(url, pages = 1, n = 25, quiet = !interactive())
+wef_call(url, pages = 1, n = 25, quiet = !interactive(),
+  sleep = 0.5)
 }
 \arguments{
 \item{url}{URL to call.}
@@ -14,6 +15,8 @@ wef_call(url, pages = 1, n = 25, quiet = !interactive())
 \item{n}{Number of results per page.}
 
 \item{quiet}{If \code{FALSE} prints useful information to the console.}
+
+\item{sleep}{Pause in seconds to mark between each API call (\code{pages}).}
 }
 \value{
 A \code{list}.

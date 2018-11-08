@@ -15,9 +15,14 @@
 #' @return A \code{list}.
 #'
 #' @export
-wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
+wef_call <- function(url, pages = 1, n = 25, quiet = !interactive(), sleep = .5){
 
   uri <- paste0(url, "?page%5Bnumber%5D=1&page%5Bsize%5D=", n)
+
+  if(sleep < .5){
+    cat(crayon::red(cli::symbol$warning), "sleep argument", crayon::yellow("too low"), "- setting to", crayon::green(".5"), "\n")
+    sleep <- .5
+  }
 
   data <- tryCatch(
     jsonlite::fromJSON(uri),
@@ -67,6 +72,8 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
           pb$tick()
         }
       }
+
+      Sys.sleep(sleep)
 
       data <- tryCatch(
         jsonlite::fromJSON(uri),
