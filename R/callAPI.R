@@ -45,11 +45,11 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
   if(pages > 1){
 
     if(pages > data$meta$pagination$total_pages){
-      pages <- data$meta$pagination$total_pages
       message(
         crayon::red(cli::symbol$cross), .c(" Requesting more pages than there are ("),
-        crayon::red(data$meta$pagination$total_pages), .c("), setting page to "), crayon::green(pages), "\n"
+        crayon::red(pages), .c("), setting page to "), crayon::green(data$meta$pagination$total_pages), "\n"
       )
+      pages <- data$meta$pagination$total_pages
     }
 
     if(!isTRUE(quiet)){
@@ -64,9 +64,7 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
 
       if(!isTRUE(quiet)){
         if(length(data$meta$pagination) > 0){
-          message(
-            .c(cli::symbol$dot), " ", crayon::blue("Getting page"), .c(": "), crayon::green(p)
-          )
+          pb$tick()
         }
       }
 
