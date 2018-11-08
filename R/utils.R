@@ -33,11 +33,11 @@ globalVariables("progress_bar")
   if(pages > 1){
 
     if(pages > data$meta$pagination$total_pages){
-      message(
-        crayon::red(cli::symbol$cross), " Requesting more pages than there are (",
-        crayon::red(data$meta$pagination$total_pages), "), setting page to ", crayon::green(pages), "\n"
-      )
       pages <- data$meta$pagination$total_pages
+      message(
+        crayon::red(cli::symbol$cross), .c(" Requesting more pages than there are ("),
+        crayon::red(data$meta$pagination$total_pages), .c("), setting page to "), crayon::green(pages), "\n"
+      )
     }
 
     if(!isTRUE(quiet)){

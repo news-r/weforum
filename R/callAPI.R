@@ -28,8 +28,8 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
 
     if(length(data$meta$pagination) > 0){
       message(
-        .c(cli::symbol$dot), " ", crayon::blue("Pages"), .c(": "), crayon::green(data$meta$pagination$total_pages), "\n",
-        .c(cli::symbol$dot), " ", crayon::blue("Articles"), .c(": "), crayon::green(data$meta$pagination$total_count)
+        .c(cli::symbol$dot), " ", crayon::blue("All Pages"), .c(": "), crayon::green(data$meta$pagination$total_pages), "\n",
+        .c(cli::symbol$dot), " ", crayon::blue("All Objects"), .c(": "), crayon::green(data$meta$pagination$total_count)
       )
     }
 
@@ -43,6 +43,21 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive()){
   results <- list(data$data)
 
   if(pages > 1){
+
+    if(pages > data$meta$pagination$total_pages){
+      pages <- data$meta$pagination$total_pages
+      message(
+        crayon::red(cli::symbol$cross), .c(" Requesting more pages than there are ("),
+        crayon::red(data$meta$pagination$total_pages), .c("), setting page to "), crayon::green(pages), "\n"
+      )
+    }
+
+    if(!isTRUE(quiet)){
+      pb <- progress::progress_bar$new(
+        format = ":rate downloading page: :current [:bar] :percent eta: :eta",
+        total = pages, clear = FALSE, width= 60)
+      pb$tick(1)
+    }
 
     for(p in 2:pages){
       uri <- paste0(url, "?&page%5Bsize%5D=", n, "&page%5Bnumber%5D=", p)
