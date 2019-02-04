@@ -24,7 +24,7 @@ Interface to the [World Economic Forum's](https://www.weforum.org/) website [API
 
 ```{r, eval = FALSE}
 # install.packages("remotes")
-remotes::install_bitbucket("JohnCoene/weforum")
+remotes::install_github("JohnCoene/weforum")
 ```
 
 ## Functions

@@ -13,7 +13,7 @@ articles.
 
 ``` r
 # install.packages("remotes")
-remotes::install_bitbucket("JohnCoene/weforum")
+remotes::install_github("JohnCoene/weforum")
 ```
 
 ## Functions

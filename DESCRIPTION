@@ -3,7 +3,6 @@ Title: Interface to the 'World Economic Forum' API
 Version: 0.0.0.9000
 Authors@R: person("Jean-Philippe", "Coene", email = "JCOE@weforum.org", role = c("aut", "cre"))
 Description: Interface to the 'World Economic Forum' API.
-Depends: R (>= 3.4.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -17,5 +16,5 @@ Imports:
     cli,
     rstudioapi,
     progress
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Remotes: r-lib/progress
