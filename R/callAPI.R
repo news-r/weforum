@@ -57,7 +57,7 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive(), sleep = .5)
       pages <- data$meta$pagination$total_pages
     }
 
-    if(!isTRUE(quiet)){
+    if(!isTRUE(quiet) && length(data$meta$pagination) > 0){
       pb <- progress::progress_bar$new(
         format = ":rate downloading page: :current [:bar] :percent eta: :eta",
         total = pages, clear = FALSE, width= 60)

@@ -1,7 +1,10 @@
 globalVariables("progress_bar")
 
 .c <- function(x){
-  theme <- rstudioapi::getThemeInfo()
+  if(rstudioapi::isAvailable())
+    theme <- rstudioapi::getThemeInfo()
+  else 
+    theme <- list(dark = TRUE)
 
   if (isTRUE(theme$dark)) crayon::white(x) else crayon::black(x)
 }
