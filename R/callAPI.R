@@ -60,15 +60,14 @@ wef_call <- function(url, pages = 1, n = 25, quiet = !interactive(), sleep = .5)
     if(!isTRUE(quiet) && length(data$meta$pagination) > 0){
       pb <- progress::progress_bar$new(
         format = ":rate downloading page: :current [:bar] :percent eta: :eta",
-        total = pages, clear = FALSE, width= 60)
-      pb$tick(1)
+        total = pages, clear = FALSE, width = 60)
     }
 
-    for(p in 2:pages){
+    for(p in 1:pages){
       uri <- paste0(url, "?&page%5Bsize%5D=", n, "&page%5Bnumber%5D=", p)
 
       if(!isTRUE(quiet)){
-        if(length(data$meta$pagination) > 0){
+        if(length(data$meta$pagination) > 1){
           pb$tick()
         }
       }
