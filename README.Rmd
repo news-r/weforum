@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 # weforum
 
-![weforum logo](https://www.weforum.org/assets/logo-d8b23e233f85a1af9093a1946e18cff462b0ca82fcd720e2a9633270e53a0bcd.svg)
+![weforum logo](https://www.weforum.org/assets/logo-b66768797e3f785791fd157ffc33c27eeca6d5100b7f34d418f50d206f1a8004.svg)
 
 Interface to the [World Economic Forum's](https://www.weforum.org/) website [API](https://api.weforum.org/), containing over 37,000 articles.
 
