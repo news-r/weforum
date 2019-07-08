@@ -4,8 +4,8 @@
 ![weforum
 logo](https://www.weforum.org/assets/logo-b66768797e3f785791fd157ffc33c27eeca6d5100b7f34d418f50d206f1a8004.svg)
 
-Interface to the [World Economic Forum’s](https://www.weforum.org/)
-website [API](https://api.weforum.org/), containing over 40,000
+Interface to the World Economic Forum’s
+blog API, [the Agenda](https://www.weforum.org/agenda), containing over 40,000
 articles.
 
 ## Install
