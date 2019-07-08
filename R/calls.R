@@ -54,7 +54,7 @@ wef_articles_channels <- function(channel, pages = 1, n = 25, quiet = !interacti
   if(!channel %in% valid_channels())
     stop(crayon::red("invalid channel, valid_channels"), call. = FALSE)
 
-  .call_api(paste0("articles/channels", channel), pages, n, quiet, sleep)
+  .call_api(paste0("articles/channels/", channel), pages, n, quiet, sleep)
 
 }
 
@@ -68,7 +68,7 @@ wef_articles_content_types <- function(type, pages = 1, n = 25, quiet = !interac
   if(!type %in% valid_types())
     stop(crayon::red("invalid type, see valid_types"), call. = FALSE)
 
-  .call_api(paste0("articles/content-types", type), pages, n, quiet, sleep)
+  .call_api(paste0("articles/content-types/", type), pages, n, quiet, sleep)
 
 }
 
@@ -82,7 +82,7 @@ wef_articles_origins <- function(origin, pages = 1, n = 25, quiet = !interactive
   if(!origin %in% valid_origins())
     stop(crayon::red("invalid origin, see valid_origins"), call. = FALSE)
 
-  .call_api(paste0("articles/origins", origin), pages, n, quiet, sleep)
+  .call_api(paste0("articles/origins/", origin), pages, n, quiet, sleep)
 
 }
 
