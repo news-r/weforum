@@ -1,63 +1,59 @@
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
-![weforum
-logo](https://www.weforum.org/assets/logo-b66768797e3f785791fd157ffc33c27eeca6d5100b7f34d418f50d206f1a8004.svg)
+Interface to the [World Economic Forum's](https://www.weforum.org/) website [API](https://api.weforum.org/), containing over 40,000 articles.
 
-Interface to the World Economic Forum’s
-blog API, [the Agenda](https://www.weforum.org/agenda), containing over 40,000
-articles.
-
-## Install
+Install
+-------
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("news-r/weforum")
 ```
 
-## Functions
+Functions
+---------
 
-  - `wef_articles_list`
-  - `wef_articles_channels`
-  - `wef_articles_content_types`
-  - `wef_articles_origins`
-  - `wef_collections`
-  - `wef_communities`
-  - `wef_events`
-  - `wef_event_sessions`
-  - `wef_projects`
-  - `wef_reports`
-  - `wef_sf_accounts`
-  - `wef_topics`
-  - `wef_streams`
-  - `wef_updates`
-  - `wef_endpoints`
+-   `wef_articles_list`
+-   `wef_articles_channels`
+-   `wef_articles_content_types`
+-   `wef_articles_origins`
+-   `wef_collections`
+-   `wef_communities`
+-   `wef_events`
+-   `wef_event_sessions`
+-   `wef_projects`
+-   `wef_reports`
+-   `wef_sf_accounts`
+-   `wef_topics`
+-   `wef_streams`
+-   `wef_updates`
+-   `wef_endpoints`
 
-## Examples
+Examples
+--------
 
 ``` r
 library(weforum)
+#> ℹ No API key is required.
 
 # list endpoints
 endpoints <- wef_endpoints()
 ```
 
-The above returns basic endpoints, responses from the calls above will
-include other endpoints, `weforum` lets you dynamically call those.
-Let’s demonstrate with an example.
+The above returns basic endpoints, responses from the calls above will include other endpoints, `weforum` lets you dynamically call those. Let's demonstrate with an example.
 
 ``` r
 # get some articles
 articles <- wef_articles_list() 
-#> ․ All Pages: 1259
-#> ․ All Objects: 31473
+#> ․ All Pages: 1263
+#> ․ All Objects: 31554
 
 nrow(articles[[1]])
 #> [1] 25
 ```
 
-This returns a nested list, of 25 articles by default. As explained
-above it includes more endpoints.
+This returns a nested list, of 25 articles by default. As explained above it includes more endpoints.
 
 ``` r
 attr <- articles[[1]]$attributes
