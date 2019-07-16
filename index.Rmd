@@ -1,0 +1,93 @@
+<!-- badges go here -->
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/JohnCoene)
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(htmltools)
+```
+
+```{r, echo=FALSE}
+br()
+br()
+
+div(
+  class = "row",
+  div(
+    class = "col-md-4",
+    img(
+      src = "logo.png",
+      class = "img-responsive responsive-img"
+    )
+  ),
+  div(
+    class = "col-md-8",
+    p(
+      "Retrieve the World Economic Forum's Agenda articles."
+    ),
+    p(
+      tags$a(
+        tags$i(class = "fa fa-code"),
+        class = "btn btn-primary",
+        href = "reference/index.html",
+        style = "margin-bottom: 5px;",
+        "Reference"
+      ),
+      tags$a(
+        tags$i(class = "fa fa-github"),
+        class = "btn btn-default",
+        href = "https://github.com/news-r/weforum",
+        style = "margin-bottom: 5px;",
+        "Repository"
+      )
+    )
+  )
+)
+```
+
+## Installation
+
+You can install the package with `remotes` from Github, see [changes](news/index.html).
+
+```{r, eval=FALSE}
+# install.packages("remotes")
+remotes::install_github("news-r/weforum") # github
+```
+
+## Example
+
+
+```{r}
+library(weforum)
+
+# list endpoints
+(endpoints <- wef_endpoints())
+```
+
+The above returns basic endpoints, responses from the calls above will include other endpoints, `weforum` lets you dynamically call those. Let's demonstrate with an example.
+
+```{r}
+# get some articles
+articles <- wef_articles_list() 
+
+nrow(articles[[1]])
+```
+
+This returns a nested list, of 25 articles by default. As explained above it includes more endpoints.
+
+```{r}
+attr <- articles[[1]]$attributes
+names(attr)[grepl("endpoint", names(attr))]
+```
+
+You can call those endpoints with `wef_call`.
+
+```{r}
+data <- purrr::map(attr$api_endpoint, wef_call)
+
+length(data)
+```
